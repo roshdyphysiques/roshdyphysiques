@@ -1,0 +1,307 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#c9a84c;--black:#080808;--surface:#0f0f0f;--border:#1c1c1c;--muted:#666}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#080808;color:#f0f0f0;line-height:1.6}
+a{text-decoration:none}
+.w{max-width:760px;margin:0 auto;padding:0 32px}
+.tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;display:block;margin-bottom:16px}
+h2{font-size:36px;font-weight:500;color:#fff;letter-spacing:-0.5px;line-height:1.15;margin-bottom:16px}
+.btn-p{background:#c9a84c;color:#000;font-size:13px;font-weight:600;padding:16px 36px;border-radius:3px;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase;display:inline-block}
+.btn-s{background:transparent;color:#fff;font-size:13px;font-weight:500;padding:16px 36px;border-radius:3px;border:1px solid #333;cursor:pointer;letter-spacing:1px;text-transform:uppercase;display:inline-block}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,0.96);backdrop-filter:blur(10px);border-bottom:1px solid #1c1c1c;padding:16px 32px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:14px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#fff}
+.hero{position:relative;height:700px;overflow:hidden;background:#111;display:flex;align-items:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.42)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,0.05) 0%,rgba(8,8,8,0.45) 55%,#080808 100%)}
+.hero-content{position:relative;z-index:2;padding-bottom:72px;width:100%}
+.hero h1{font-size:50px;font-weight:500;line-height:1.08;color:#fff;letter-spacing:-1.5px;margin-bottom:20px;max-width:640px}
+.hero p{font-size:18px;color:#aaa;max-width:500px;margin-bottom:44px;line-height:1.65}
+.stats{background:#0a0a0a;border-bottom:1px solid #1c1c1c}
+.stats-inner{display:flex;justify-content:center;gap:80px;padding:36px 32px}
+.stat .num{font-size:30px;font-weight:500;color:#fff;text-align:center}
+.stat .lbl{font-size:11px;color:#666;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;text-align:center}
+.section{padding:96px 0;border-bottom:1px solid #1c1c1c}
+.section .intro{color:#666;font-size:16px;line-height:1.8;margin-top:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1c1c1c;border:1px solid #1c1c1c;border-radius:8px;overflow:hidden;margin-top:40px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.pain-card{background:#0f0f0f;padding:28px 24px}
+.pain-card .bar{width:24px;height:2px;background:#c9a84c;margin-bottom:16px;border-radius:1px}
+.pain-card strong{font-size:15px;font-weight:500;color:#ccc;display:block;margin-bottom:8px}
+.pain-card p{font-size:13px;color:#666;line-height:1.65;margin:0}
+.mythstack{display:flex;flex-direction:column;gap:1px;background:#1c1c1c;border:1px solid #1c1c1c;border-radius:8px;overflow:hidden;margin-top:40px}
+.myth-item{background:#0f0f0f;padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.myth-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.myth-wrong .myth-label{color:#c0392b}
+.myth-right .myth-label{color:#c9a84c}
+.myth-wrong p{font-size:14px;color:#888;line-height:1.65;margin:0}
+.myth-right p{font-size:14px;color:#bbb;line-height:1.65;margin:0}
+blockquote{border-left:3px solid #c9a84c;padding:20px 28px;background:#0f0f0f;border-radius:0 8px 8px 0;margin-top:40px}
+blockquote p{font-size:18px;color:#bbb;line-height:1.7;font-style:italic;margin:0 0 12px}
+blockquote cite{font-size:12px;color:#555;letter-spacing:1px;text-transform:uppercase;font-style:normal}
+.sub10-card{background:#0f0f0f;border:1px solid #1c1c1c;border-radius:8px;padding:28px 24px}
+.sub10-card .icon{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;margin-bottom:14px;display:block}
+.sub10-card h3{font-size:15px;font-weight:500;color:#fff;margin-bottom:8px}
+.sub10-card p{font-size:13px;color:#666;line-height:1.65;margin:0}
+.founder-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:40px;align-items:start;margin-top:40px}
+.founder-grid img{width:100%;border-radius:8px;object-fit:cover;object-position:center top;aspect-ratio:3/4;display:block}
+.founder-bio p{font-size:16px;line-height:1.85;margin-bottom:18px}
+.lifestyle{position:relative;height:500px;overflow:hidden;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
+.lifestyle img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;filter:brightness(0.38)}
+.lifestyle-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center}
+.lifestyle-content .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:20px}
+.lifestyle-content h2{font-size:36px;font-weight:500;color:#fff;max-width:520px;line-height:1.15;letter-spacing:-0.5px;margin:0}
+.transform-card{border-radius:8px;overflow:hidden;background:#111;border:1px solid #1c1c1c;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.transform-card img{width:100%;height:100%;object-fit:contain}
+.programme-card{background:#0a0a0a;border:1px solid #1c1c1c;border-radius:8px;padding:36px 28px;position:relative}
+.programme-card.featured{background:#111;border-color:#c9a84c}
+.programme-card .badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#c9a84c;color:#000;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:0 0 6px 6px;font-weight:600;white-space:nowrap}
+.programme-card .ptag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px}
+.programme-card .months{font-size:28px;font-weight:500;color:#fff;margin-bottom:8px}
+.programme-card .headline{font-size:15px;font-weight:500;color:#ccc;margin-bottom:16px}
+.programme-card .desc{font-size:13px;color:#666;line-height:1.7;margin-bottom:28px}
+.programme-card .apply-btn{display:block;text-align:center;font-size:12px;font-weight:600;padding:13px 24px;border-radius:3px;letter-spacing:1px;text-transform:uppercase}
+.programme-card .apply-btn.primary{background:#c9a84c;color:#000;border:none}
+.programme-card .apply-btn.secondary{background:transparent;color:#fff;border:1px solid #333}
+.finance-box{margin-top:32px;background:#0f0f0f;border:1px solid #1c1c1c;border-radius:8px;padding:24px 28px}
+.finance-box .flabel{font-size:11px;color:#666;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center}
+.finance-inner{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
+.finance-item{text-align:center}
+.finance-item .fname{font-size:18px;font-weight:700;color:#fff;letter-spacing:-0.5px}
+.finance-item .fsub{font-size:11px;color:#666;margin-top:4px}
+.fdivider{width:1px;height:56px;background:#1c1c1c}
+.offer-card{background:#0f0f0f;padding:28px 24px}
+.offer-card .bar{width:20px;height:2px;background:#c9a84c;margin-bottom:14px;border-radius:1px}
+.offer-card h3{font-size:15px;font-weight:500;color:#fff;margin-bottom:8px}
+.offer-card p{font-size:13px;color:#666;line-height:1.65;margin:0}
+.ftag{font-size:11px;color:#c9a84c;border:1px solid rgba(201,168,76,0.25);padding:6px 14px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;display:inline-block;margin:4px 4px 0 0}
+.cta-section{padding:120px 0;text-align:center;border-bottom:1px solid #1c1c1c}
+.cta-section h2{font-size:44px;letter-spacing:-0.5px;line-height:1.1;margin-bottom:20px}
+.cta-section .sub{color:#666;font-size:17px;max-width:480px;margin:0 auto 48px;line-height:1.75}
+.cta-note{font-size:11px;color:#2a2a2a;margin-top:24px;letter-spacing:2px;text-transform:uppercase}
+footer{padding:40px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+footer p{font-size:12px;color:#2a2a2a}
+@media(max-width:620px){
+  .hero h1{font-size:32px}
+  .hero{height:600px}
+  .grid2{grid-template-columns:1fr}
+  .grid3,.pgrid{grid-template-columns:1fr}
+  .myth-item{grid-template-columns:1fr}
+  .founder-grid{grid-template-columns:1fr}
+  .stats-inner{gap:20px;padding:24px 20px}
+  .cta-section h2{font-size:30px}
+}
+</style>
+
+<nav>
+  <div class="nav-logo">Roshdy Physiques</div>
+  <a href="https://tally.so/r/obBK65" target="_blank" class="btn-p" style="padding:10px 20px;font-size:12px">Apply Now</a>
+</nav>
+
+<section class="hero">
+  <img src="https://res.cloudinary.com/daiakeue7/image/upload/f_auto,q_auto/tempImageZnA6Ab_itw8yo" alt="Gabriel Roshdy">
+  <div class="hero-overlay"></div>
+  <div class="w hero-content">
+    <span class="tag">1-1 Online Coaching for Men</span>
+    <h1>You Have Been Training For Years. So Why Haven't You Got <span style="color:#c9a84c">The Physique?</span></h1>
+    <p>Most men are not lazy. They are misinformed. Roshdy Physiques gives serious men the system, the truth, and the standard to finally get there.</p>
+    <div class="btn-row">
+      <a href="https://tally.so/r/obBK65" target="_blank" class="btn-p">Apply for Coaching</a>
+      <a href="https://instagram.com/gabrielrxshdy" target="_blank" class="btn-s">DM "LEAN" on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="num">94%</div><div class="lbl">Hit their goal</div></div>
+    <div class="stat"><div class="num">50+</div><div class="lbl">Physiques transformed</div></div>
+    <div class="stat"><div class="num">12 weeks</div><div class="lbl">Avg transformation</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">Sound familiar?</span>
+    <h2>You Are Doing Everything Right.<br>And It Is Still Not Working.</h2>
+    <p class="intro">You are not the guy who skips the gym or eats takeaway every night. You train. You watch what you eat. You have been at this for years. And yet no abs. No real definition. No physique that reflects the effort. That is not a discipline problem. That is a system problem.</p>
+    <div class="grid2">
+      <div class="pain-card"><div class="bar"></div><strong>Stuck at 1,800 calories and wondering why you are not lean</strong><p>You have been told the answer is eating less. So you cut and cut. Your metabolism has adapted, your muscle is suffering, and the fat is not moving.</p></div>
+      <div class="pain-card"><div class="bar"></div><strong>Doing incline walking every morning with nothing to show for it</strong><p>Cardio has become your default solution. It is also why you are getting nowhere. You cannot cardio your way to an elite physique.</p></div>
+      <div class="pain-card"><div class="bar"></div><strong>Convinced peptides or fat burners are what is missing</strong><p>Shortcuts feel logical when the basics are not working. But no peptide fixes a broken training programme or a chronically under-fuelled body.</p></div>
+      <div class="pain-card"><div class="bar"></div><strong>Going low carb or keto thinking that is the secret</strong><p>Eliminating carbs might drop water weight. It will not build the physique you actually want or sustain performance in the gym.</p></div>
+      <div class="pain-card"><div class="bar"></div><strong>Training consistently for years with a physique that has not changed</strong><p>The effort is there. The programme is not. Effort applied to the wrong stimulus produces the same result every time.</p></div>
+      <div class="pain-card"><div class="bar"></div><strong>Never actually been truly lean</strong><p>Not just not fat. Lean. Vascular. Defined. The physique most men spend their entire training lives chasing but never reaching.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">The real problem</span>
+    <h2>Everything You Have Been Told<br>About Getting Lean Is Wrong.</h2>
+    <p class="intro">The fitness industry profits from confusion. Most men are following advice that is actively keeping them from the results they want. Here is what is actually true.</p>
+    <div class="mythstack">
+      <div class="myth-item">
+        <div class="myth-wrong"><div class="myth-label">What you believe</div><p>Eat as little as possible. The bigger the deficit, the faster the result.</p></div>
+        <div class="myth-right"><div class="myth-label">The truth</div><p>Chronically under-eating destroys muscle, crashes your metabolism, and makes fat loss nearly impossible. Eating more, structured correctly, is what gets you leaner.</p></div>
+      </div>
+      <div class="myth-item">
+        <div class="myth-wrong"><div class="myth-label">What you believe</div><p>More cardio is the answer. Just add another session.</p></div>
+        <div class="myth-right"><div class="myth-label">The truth</div><p>Excessive cardio without the right training programme breaks down muscle and leaves you looking soft. Your training stimulus is the issue, not how many steps you get.</p></div>
+      </div>
+      <div class="myth-item">
+        <div class="myth-wrong"><div class="myth-label">What you believe</div><p>You have a nutrition problem. Just be stricter with your diet.</p></div>
+        <div class="myth-right"><div class="myth-label">The truth</div><p>Most men who cannot get lean have a training problem. Nutrition refines a result. Training creates it. Fix the training first.</p></div>
+      </div>
+      <div class="myth-item">
+        <div class="myth-wrong"><div class="myth-label">What you believe</div><p>Keto and low carb are the fastest route to getting lean.</p></div>
+        <div class="myth-right"><div class="myth-label">The truth</div><p>Cutting carbs drops water weight temporarily. It does not build muscle, sustain training performance, or produce an elite physique long term.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">The standard</span>
+    <h2>Why Every Serious Man Should<br>Get To Sub-10% Body Fat.</h2>
+    <p class="intro">This is not about vanity. Sub-10% is a physiological and psychological threshold that changes everything — how your body functions, how you are perceived, and the man you become in the process of getting there.</p>
+    <blockquote>
+      <p>"No man has the right to be an amateur in the matter of physical training. It is a shame for a man to grow old without seeing the beauty and strength of which his body is capable."</p>
+      <cite>Socrates</cite>
+    </blockquote>
+    <div class="grid3">
+      <div class="sub10-card"><span class="icon">Physique</span><h3>Your true muscle finally shows</h3><p>You cannot see what you have built until the fat is gone. Sub-10% is where years of training become visible for the very first time.</p></div>
+      <div class="sub10-card"><span class="icon">Testosterone</span><h3>Hormonal output increases significantly</h3><p>Lower body fat is directly linked to higher testosterone. More drive, more aggression in the gym, more confidence in every room you walk into.</p></div>
+      <div class="sub10-card"><span class="icon">Health</span><h3>Insulin sensitivity improves dramatically</h3><p>Better nutrient partitioning means your body uses food to build muscle rather than store it as fat. Your body starts working with you instead of against you.</p></div>
+      <div class="sub10-card"><span class="icon">Skin and Energy</span><h3>Clearer skin, sharper mind, higher energy</h3><p>Excess body fat drives systemic inflammation. Getting lean reduces it across the board. Skin clears, sleep deepens, mental clarity sharpens.</p></div>
+      <div class="sub10-card"><span class="icon">Confidence</span><h3>You carry yourself differently</h3><p>When you respect what you see in the mirror it changes how you move through the world. Not ego. Standard. The kind of confidence that compounds.</p></div>
+      <div class="sub10-card"><span class="icon">Standards</span><h3>Your baseline permanently rises</h3><p>Once you have lived at this level, average stops being acceptable — in your body, your relationships, your business, your expectations of yourself.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">Your coach</span>
+    <h2>I Have Been Exactly<br>Where You Are.</h2>
+    <div class="founder-grid">
+      <img src="https://res.cloudinary.com/daiakeue7/image/upload/f_auto,q_auto/tempImageZnA6Ab_itw8yo" alt="Gabriel Roshdy">
+      <div class="founder-bio">
+        <p style="color:#888">I grew up skinny. Then I trained and ate everything in sight — the classic dirty bulk. I got bigger. I got stronger. And I genuinely thought I knew what I was doing.</p>
+        <p style="color:#888">I did not. I was carrying fat I had convinced myself was muscle, following programmes I had pieced together from YouTube, and ego-lifting my way through sessions that looked impressive and produced nothing real.</p>
+        <p style="color:#888">It was not until I left my ego at the door and hired my first coach that everything changed. Not just my physique — my entire understanding of what it takes. I learned that the best in any field are always students first. That humility is not weakness. It is the only path to genuine mastery.</p>
+        <p style="color:#bbb">I applied that. I got truly lean — not crash-diet lean, not holiday lean. Lean as a permanent standard. And when I did, everything around me shifted. Doors opened. Opportunities appeared. The way people responded to me changed. The way I responded to myself changed.</p>
+        <p style="color:#c9a84c;font-style:italic">That is what I give my clients. Not just a programme. The truth, the system, and the standard — so they can get there faster than I did.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lifestyle">
+  <img src="https://res.cloudinary.com/daiakeue7/image/upload/f_auto,q_auto/IMG_8897_asgmfd" alt="Gabriel training">
+  <div class="lifestyle-content">
+    <div>
+      <p class="lbl">The standard</p>
+      <h2>"Most men never see their abs.<br>That ends here."</h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">Transformations</span>
+    <h2>Not A Body Transformation.<br>A Life One.</h2>
+    <p class="intro">These are not men who just lost a couple of kilograms. These are men who people look at and ask — what the hell did you do? That is the standard we build to.</p>
+    <div class="grid3">
+      <div class="transform-card"><img src="https://res.cloudinary.com/daiakeue7/image/upload/f_auto,q_auto/Sal_Sanchez_v00giw" alt="Transformation"></div>
+      <div class="transform-card"><img src="https://res.cloudinary.com/daiakeue7/image/upload/f_auto,q_auto/Sal_Sanchez_v00giw" alt="Transformation"></div>
+      <div class="transform-card"><img src="https://res.cloudinary.com/daiakeue7/image/upload/f_auto,q_auto/Sal_Sanchez_v00giw" alt="Transformation"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">Programmes</span>
+    <h2>Choose Your Commitment.<br>We Handle The Rest.</h2>
+    <p class="intro">Every programme is fully personalised. I believe in full lifestyle change — not a quick fix. Choose the timeline that matches what you are actually here to do.</p>
+    <div class="pgrid">
+      <div class="programme-card">
+        <div class="ptag">Foundation</div>
+        <div class="months">3 Months</div>
+        <div class="headline">Get lean. Build the base.</div>
+        <div class="desc">The first 90 days done right. Training corrected, nutrition rebuilt, fat loss underway. A serious start for men who are ready to see what their body is actually capable of.</div>
+        <a href="https://tally.so/r/obBK65" target="_blank" class="apply-btn secondary">Apply Now</a>
+      </div>
+      <div class="programme-card featured">
+        <div class="badge">Most Popular</div>
+        <div class="ptag">Transformation</div>
+        <div class="months">6 Months</div>
+        <div class="headline">Where the real change happens.</div>
+        <div class="desc">Six months is where physiques genuinely transform. Lean, vascular, defined — with the habits and systems to keep it. This is the most popular choice for a reason.</div>
+        <a href="https://tally.so/r/obBK65" target="_blank" class="apply-btn primary">Apply Now</a>
+      </div>
+      <div class="programme-card">
+        <div class="ptag">Elite</div>
+        <div class="months">12 Months</div>
+        <div class="headline">A completely different man.</div>
+        <div class="desc">A full year under the system. The physique, the identity, the standards — all rebuilt from the ground up. People will not just notice you lost weight. They will not recognise who you were before.</div>
+        <a href="https://tally.so/r/obBK65" target="_blank" class="apply-btn secondary">Apply Now</a>
+      </div>
+    </div>
+    <div class="finance-box">
+      <div class="flabel">Flexible financing available</div>
+      <div class="finance-inner">
+        <div class="finance-item">
+          <div class="fname">Klarna</div>
+          <div class="fsub">Pay in 3, 6, or 12 months</div>
+        </div>
+        <div class="fdivider"></div>
+        <div class="finance-item">
+          <div class="fname">Affirm</div>
+          <div class="fsub">Monthly payment plans</div>
+        </div>
+        <div class="fdivider"></div>
+        <div class="finance-item" style="max-width:200px">
+          <div style="font-size:13px;color:#aaa;line-height:1.6">Invest in yourself now. Pay in a way that works for you.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="w">
+    <span class="tag">What is included</span>
+    <h2>One System.<br>Everything You Need.</h2>
+    <div class="grid2">
+      <div class="offer-card"><div class="bar"></div><h3>Training built around your weak points</h3><p>Not a generic programme. A plan engineered around your lagging muscle groups, built on true hypertrophy principles — so your physique actually changes shape, not just size.</p></div>
+      <div class="offer-card"><div class="bar"></div><h3>Nutrition built around your life</h3><p>No endless meal prep. No foods you hate. A flexible plan designed around your schedule, your preferences, and your lifestyle — so you actually stick to it and make it permanent.</p></div>
+      <div class="offer-card"><div class="bar"></div><h3>Weekly raw check-ins</h3><p>No surface-level feedback. Real conversations, real application, real stories from the trenches. Each check-in is a coaching session that moves you forward.</p></div>
+      <div class="offer-card"><div class="bar"></div><h3>A physique roadmap with clear targets</h3><p>You will know exactly what to expect and when. A built-in timeline aligned to your body and your goal. No guesswork. No false promises. Just a clear map.</p></div>
+      <div class="offer-card"><div class="bar"></div><h3>Your own coaching app</h3><p>Gone are the days of progress photos lost in your camera roll, weights tracked in Notes, and food logged across three different apps. Everything is in one place, built for this.</p></div>
+      <div class="offer-card"><div class="bar"></div><h3>Direct access, always</h3><p>Message directly. Get answers fast. No waiting, no portals, no generic responses. You have a coach who is actually invested in your result.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="apply">
+  <div class="w">
+    <span class="tag">Ready?</span>
+    <h2>You Have Been Close For Years.<br>It Is Time To Actually <span style="color:#c9a84c">Get There.</span></h2>
+    <p class="sub">Apply now. Spots are limited and reviewed personally. If you are serious about building the physique you have been working toward — and becoming the man that comes with it — this is the step.</p>
+    <div class="btn-row" style="justify-content:center">
+      <a href="https://tally.so/r/obBK65" target="_blank" class="btn-p">Apply for Coaching</a>
+      <a href="https://instagram.com/gabrielrxshdy" target="_blank" class="btn-s">DM "LEAN" on Instagram</a>
+    </div>
+    <p class="cta-note">Limited spots · Applications reviewed personally</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Roshdy Physiques. All rights reserved.</p>
+  <p>Built for men who refuse mediocrity.</p>
+</footer>
